@@ -52,9 +52,9 @@
   <div class="nearby-search-head">
     <div class="nearby-search-title">
       <span class="nearby-pin" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.2 8 12 8 12s8-6.8 8-12a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg></span>
-      <div><h2>¿Dónde voy?</h2><p>Encontrá ayuda cerca tuyo. Usá tu ubicación o elegí una zona.</p></div>
+      <div><h2>¿Dónde voy?</h2><p>Primero detectá o escribí dónde estás. Después elegí qué ayuda necesitás.</p></div>
     </div>
-    <button class="secondary-btn" id="geoBtn" type="button" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;margin-right:5px"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span id="geoLabel">Usar mi ubicación</span> <span id="geoCheck" aria-hidden="true" hidden>✓</span></button>
+    <button class="secondary-btn" id="geoBtn" type="button" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;margin-right:5px"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span id="geoLabel">Detectar mi dirección</span> <span id="geoCheck" aria-hidden="true" hidden>✓</span></button>
   </div>
   <div class="search-panel">
     <div class="search-grid">
@@ -62,7 +62,7 @@
       <div class="field"><label for="service">¿Qué tipo de ayuda buscás? (opcional)</label><select id="service"><option value="">Todos los tipos de recursos</option><option>Comisaría</option><option>Comisaría de la Mujer</option><option>Juzgado de familia</option><option>Juzgado de paz</option><option>Fiscalía</option><option>Oficina de violencia doméstica</option><option>Hospital con guardia</option><option>Hospital o guardia</option><option>Centro de salud</option><option>Salud mental</option><option>Ambulancia / emergencias médicas</option><option>Servicio local de niñez</option><option>Defensoría de niñez</option><option>Defensoría o asesoramiento jurídico</option><option>Gabinete psicopedagógico</option><option>Facultad de Psicología</option><option>Atención en adicciones</option><option>Residencia geriátrica</option><option>Centro de día para personas mayores</option><option>PAMI</option><option>Cuidados domiciliarios</option><option>Refugio o alojamiento protegido</option><option>Trabajo social</option><option>Asistencia social y alimentaria</option><option>Servicio para discapacidad</option><option>Escuela u orientación escolar</option><option>Atención a víctimas de delitos</option><option>Atención de violencia de género</option><option>Prevención y asistencia en grooming</option><option>Apoyo por consumos problemáticos</option><option>Comedor o asistencia alimentaria</option><option>Organización comunitaria</option></select></div>
     </div>
     <div class="manual-location">
-      <p class="manual-location-title">O escribí dónde estás</p>
+      <p class="manual-location-title">Si no aparece tu dirección, escribila acá</p>
       <div class="field address-field"><label for="addressInput">Dirección, barrio o localidad</label><input id="addressInput" type="text" autocomplete="street-address" placeholder="Ej.: San Telmo, CABA o una dirección"></div>
       <p class="manual-location-title" style="margin-top:12px">También podés elegir provincia y localidad</p>
       <div class="search-grid manual-location-grid">
@@ -70,7 +70,7 @@
         <div class="field"><label for="locality">Ciudad / localidad / partido (opcional)</label><select id="locality" disabled><option value="">Elegí primero una provincia</option></select><div class="custom-location" id="otherLocalityWrap" hidden><label for="otherLocality">Otra localidad</label><input id="otherLocality" type="text" placeholder="Escribí tu localidad"></div><p class="hint" id="localityStatus">CABA y Provincia de Buenos Aires aparecen como jurisdicciones diferentes.</p></div>
       </div>
     </div>
-    <div class="search-help"><strong>Cómo buscar:</strong> elegí una situación si querés, activá tu ubicación o escribí dónde estás y tocá Buscar. El mapa muestra opciones de Google Maps; para ver nombres, reseñas y fichas completas, abrí la lista en Google Maps.</div>
+    <div class="search-help"><strong>Importante:</strong> si no aparece tu dirección después de detectar la ubicación, escribila manualmente. Luego elegí la situación o el tipo de ayuda y tocá Buscar. Si no se puede detectar la ubicación, revisá los permisos del navegador o usá la búsqueda manual.</div>
     <div class="actions"><button class="primary-btn" id="searchBtn" type="button">Buscar en el mapa</button></div>
     <p class="hint geo-status" id="geoStatus" role="status" aria-live="polite">La ubicación es opcional. Podés activarla o escribir tu dirección.</p>
     <div class="results" id="results" aria-live="polite"></div>
@@ -387,6 +387,11 @@ function drawResourceMap(list) {
 }
 function search() {
   const place = chosenPlace();
+  if (!place) {
+    $("geoStatus").textContent = "Primero detectá tu dirección o escribila manualmente para continuar.";
+    $("addressInput").focus();
+    return;
+  }
   renderMapFallback(true);
   return;
   const sit=$("situation").value, svc=$("service").value;
@@ -430,43 +435,55 @@ function search() {
   if(valid.length) drawResourceMap(list);
 }
 $("geoBtn").addEventListener("click",()=>{
-  if (userCoords) {
-    userCoords=null;
-    $("geoBtn").classList.remove("geo-enabled");
-    $("geoBtn").setAttribute("aria-pressed","false");
-    $("geoCheck").hidden=true;
-    $("geoLabel").textContent="Usar mi ubicación";
-    $("geoStatus").textContent="Ubicación desactivada. Podés escribir una dirección o elegir provincia y localidad.";
-    $("results").innerHTML="";
+  if(!navigator.geolocation){
+    $("geoStatus").textContent="No se pudo detectar tu ubicación desde este navegador. Escribí tu dirección manualmente.";
+    $("addressInput").focus();
     return;
   }
-  if(!navigator.geolocation){$("geoStatus").textContent="Este navegador no ofrece geolocalización. Escribí una dirección o elegí provincia y localidad.";return;}
-  $("geoStatus").textContent="Solicitando permiso de ubicación…";
-  $("geoBtn").classList.remove("geo-enabled");
-  $("geoBtn").setAttribute("aria-pressed","false");
-  $("geoCheck").hidden=true;
-  navigator.geolocation.getCurrentPosition(pos=>{
+  $("geoStatus").textContent="Detectando tu ubicación y buscando la dirección…";
+  $("geoBtn").disabled=true;
+  navigator.geolocation.getCurrentPosition(async pos=>{
     userCoords={lat:pos.coords.latitude,lon:pos.coords.longitude};
-    $("addressInput").value="";
-    $("province").value="";
-    $("locality").innerHTML="";
-    $("locality").appendChild(option("Ubicación actual ✓", "__gps__"));
-    $("locality").disabled=true;
-    $("otherLocality").value="";
-    $("otherLocalityWrap").hidden=true;
+    $("geoBtn").disabled=false;
     $("geoBtn").classList.add("geo-enabled");
     $("geoBtn").setAttribute("aria-pressed","true");
     $("geoCheck").hidden=false;
-    $("geoLabel").textContent="Desactivar mi ubicación";
-    $("geoStatus").textContent="✓ Ubicación habilitada. Tocá Buscar para ver los resultados cercanos. No se guarda.";
-  },err=>{
-    if(err && err.code===1){
-      $("geoStatus").textContent="El navegador no autorizó la ubicación. Revisá los permisos del sitio junto a la dirección web y habilitá Ubicación, o escribí una dirección.";
-    } else if(err && err.code===2){
-      $("geoStatus").textContent="El dispositivo no pudo determinar la ubicación. Activá la ubicación del teléfono o escribí una dirección.";
-    } else {
-      $("geoStatus").textContent="La ubicación tardó demasiado o no estuvo disponible. Escribí una dirección para continuar.";
+    $("geoLabel").textContent="Volver a detectar mi dirección";
+    $("province").value="";
+    $("locality").disabled=false;
+    $("locality").innerHTML="";
+    $("locality").appendChild(option("Elegí una localidad (opcional)", ""));
+    $("otherLocality").value="";
+    $("otherLocalityWrap").hidden=true;
+    try {
+      const url="https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat="+encodeURIComponent(pos.coords.latitude)+"&lon="+encodeURIComponent(pos.coords.longitude)+"&zoom=18&addressdetails=1";
+      const response=await fetch(url,{headers:{"Accept-Language":"es"}});
+      if(!response.ok) throw new Error("No se pudo resolver la dirección");
+      const data=await response.json();
+      const address=data && (data.name || data.display_name);
+      if(address){
+        $("addressInput").value=address;
+        $("geoStatus").textContent="✓ Dirección detectada: "+address+". Revisala; si está bien, elegí la situación y tocá Buscar.";
+      } else {
+        $("addressInput").value="";
+        $("geoStatus").textContent="Se detectaron coordenadas, pero no una dirección legible. Escribí tu dirección manualmente para seguir.";
+        $("addressInput").focus();
+      }
+    } catch(e) {
+      $("addressInput").value="";
+      $("geoStatus").textContent="Se detectó la ubicación, pero no se pudo obtener la dirección. Escribila manualmente para seguir.";
+      $("addressInput").focus();
     }
+  },err=>{
+    $("geoBtn").disabled=false;
+    if(err && err.code===1){
+      $("geoStatus").textContent="No se autorizó la ubicación. Permití el acceso en los permisos del navegador o escribí tu dirección manualmente.";
+    } else if(err && err.code===2){
+      $("geoStatus").textContent="No se pudo detectar la ubicación del dispositivo. Activá la ubicación del teléfono o escribí tu dirección manualmente.";
+    } else {
+      $("geoStatus").textContent="No se pudo detectar tu ubicación a tiempo. Escribí tu dirección manualmente para continuar.";
+    }
+    $("addressInput").focus();
   },{enableHighAccuracy:true,timeout:20000,maximumAge:60000});
 });
 function syncServiceChips() {
