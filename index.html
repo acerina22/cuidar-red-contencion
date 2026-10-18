@@ -426,12 +426,7 @@ document.querySelectorAll("[data-service]").forEach(btn => btn.addEventListener(
   document.getElementById("donde-voy").scrollIntoView({behavior:"smooth",block:"start"});
 }));
 $("searchBtn").addEventListener("click",search);
-$("clearBtn").addEventListener("click",()=>{
-  $("situation").value=""; $("service").value="";
-  syncServiceChips();
-  if (localityCatalog.length) renderLocalityOptions();
-  search();
-});
+
 document.querySelectorAll("[data-situation]").forEach(a=>a.addEventListener("click",()=>{
   $("situation").value=a.dataset.situation;
 }));
