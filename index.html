@@ -503,6 +503,9 @@ $("searchBtn").addEventListener("click",search);
 document.querySelectorAll("[data-situation]").forEach(a=>a.addEventListener("click",()=>{
   $("situation").value=a.dataset.situation;
 }));
+const locationFirstFields = document.querySelector(".search-panel > .search-grid");
+const locationFirstBlock = document.querySelector(".search-panel .manual-location");
+if (locationFirstFields && locationFirstBlock) locationFirstBlock.insertAdjacentElement("afterend", locationFirstFields);
 loadProvinces().catch(()=>{});
 
 </script>
