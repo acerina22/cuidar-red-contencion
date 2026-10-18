@@ -3,32 +3,336 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b6b70">\n<link rel="icon" type="image/svg+xml" href="./assets/cuidar-logo.svg">
+<meta name="theme-color" content="#0b6b70"><link rel="icon" type="image/svg+xml" href="./assets/cuidar-logo.svg">
 <title>Cuid.ar — Red de Contención Argentina</title>
 <style>
-:root{--teal:#0b6b70;--deep:#12464b;--mint:#e4f4f1;--cream:#f8f7f2;--ink:#173b40;--muted:#5c7274;--danger:#ad2929;--danger-bg:#fff0ee;--line:#dce9e6}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}.topbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 3px 18px #173b4010}.nav{max-width:1120px;margin:auto;min-height:76px;padding:10px 20px;display:flex;align-items:center;gap:14px}.brand-mark{width:48px;height:48px;border-radius:15px;background:var(--mint);display:grid;place-items:center;color:var(--teal);font-size:26px;flex:none}.brand-mark img{display:block;width:100%;height:100%;object-fit:contain;padding:4px}.brand{font-weight:850;font-size:1.22rem;line-height:1.1;letter-spacing:-.03em}.brand small{display:block;margin-top:4px;font-weight:550;font-size:.72rem;letter-spacing:0;color:var(--muted)}.navlinks{display:flex;gap:18px;margin-left:auto;align-items:center}.navlinks a,.quick-exit{font-size:.9rem;font-weight:700;text-decoration:none;color:var(--deep)}.quick-exit{background:#f1e8e7;border:1px solid #e4cccc;border-radius:10px;padding:9px 12px}.wrap{max-width:1120px;margin:auto;padding:26px 20px 60px}.intro{padding:20px 0 16px}.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;font-weight:800;color:var(--teal)}h1{font-size:clamp(2rem,5vw,3.35rem);line-height:1.07;letter-spacing:-.045em;margin:8px 0 12px}h2{font-size:clamp(1.35rem,3vw,2rem);letter-spacing:-.03em;margin:0 0 8px}h3{font-size:1.08rem;margin:0 0 6px}.subtitle{max-width:760px;color:var(--muted);font-size:1.08rem;margin:0}.urgency{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0 32px}.urgent-card{border-radius:18px;padding:18px 20px;display:flex;gap:14px;align-items:center;background:var(--danger-bg);border:1px solid #f0c9c4;min-width:0}.urgent-card.suicide{background:#fff7e8;border-color:#f2dcac}.urgent-icon{width:48px;height:48px;display:grid;place-items:center;background:white;border-radius:14px;font-size:25px;flex:none}.urgent-card p{margin:3px 0 12px;font-size:.9rem;color:#664d4d}.urgent-card.suicide p{color:#6b5a34}.call-btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;background:var(--danger);color:white;text-decoration:none;padding:10px 14px;font-size:.95rem;font-weight:800;min-height:44px}.suicide .call-btn{background:#8c5a00}.section{margin:34px 0}.section-head{margin-bottom:16px}.section-head p{color:var(--muted);margin:0}.search-panel{background:white;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 30px #123b4010}.search-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.field label{display:block;font-weight:750;font-size:.92rem;margin-bottom:6px}.field select,.field input{width:100%;min-height:48px;border:1px solid #c9d9d7;border-radius:10px;background:white;padding:11px 12px;color:var(--ink);font:inherit}.location-row{display:flex;gap:8px}.location-row input{flex:1;min-width:0}.secondary-btn,.primary-btn{min-height:46px;border-radius:10px;padding:10px 15px;font:inherit;font-weight:800;cursor:pointer}.secondary-btn{border:1px solid #b8d4d0;background:var(--mint);color:var(--deep)}.primary-btn{background:var(--teal);color:white;border:1px solid var(--teal)}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.hint{font-size:.85rem;color:var(--muted);margin:8px 0 0}.results{margin-top:18px}.results-status{background:#f1f8f7;padding:13px 15px;border-radius:12px;margin-bottom:12px}.resource-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.resource{border:1px solid var(--line);border-radius:14px;padding:15px;background:white}.resource p{margin:4px 0;color:var(--muted);font-size:.92rem}.resource a{color:var(--teal);font-weight:750;overflow-wrap:anywhere}.map-frame{width:100%;height:350px;border:1px solid var(--line);border-radius:14px;background:#edf5f3}.empty{border:1px dashed #b6ceca;padding:18px;border-radius:14px;color:var(--muted);background:#fbfdfc}.category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.category{background:white;border:1px solid var(--line);border-radius:17px;padding:18px;text-decoration:none;color:inherit;min-width:0;transition:transform .15s,box-shadow .15s}.category:hover{transform:translateY(-2px);box-shadow:0 8px 20px #123b4010}.category-icon{font-size:1.65rem;margin-bottom:10px}.category p{font-size:.91rem;color:var(--muted);margin:5px 0 0}.support{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.support-card{padding:18px;background:var(--mint);border-radius:16px;border:1px solid #cae5df}.support-card strong{font-size:1.25rem;display:block;color:var(--deep);margin:5px 0}.support-card p{margin:4px 0 0;color:var(--muted);font-size:.9rem}footer{background:var(--deep);color:#eaf6f4;padding:30px 20px}footer .foot{max-width:1120px;margin:auto;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}footer p{margin:5px 0;color:#d2e6e3;font-size:.9rem}.disclaimer{font-size:.85rem;color:var(--muted);margin-top:14px}.mobile-menu{display:none}
-@media(max-width:760px){.nav{min-height:68px;padding:9px 14px;gap:10px}.brand-mark{width:42px;height:42px}.brand{font-size:1.05rem}.brand small{font-size:.66rem}.navlinks{display:none}.mobile-menu{display:block;margin-left:auto;border:1px solid var(--line);background:white;color:var(--deep);border-radius:10px;padding:9px 11px;font-weight:800}.mobile-links{display:none;padding:0 14px 12px;gap:8px;flex-wrap:wrap}.mobile-links.open{display:flex}.mobile-links a{padding:8px 10px;text-decoration:none;color:var(--deep);font-weight:700;background:var(--mint);border-radius:9px;font-size:.9rem}.quick-exit{font-size:.78rem;padding:8px 9px}.wrap{padding:18px 14px 44px}.intro{padding-top:14px}.urgency{gap:10px;margin:14px 0 26px}.urgent-card{padding:14px;display:block}.urgent-icon{width:40px;height:40px;margin-bottom:9px}.urgent-card p{font-size:.84rem}.call-btn{width:100%;padding:10px}.search-panel{padding:16px}.search-grid{grid-template-columns:1fr;gap:13px}.location-row{flex-direction:column}.actions{flex-direction:column}.actions button{width:100%}.resource-list{grid-template-columns:1fr}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.category{padding:14px}.category p{font-size:.86rem}.support{grid-template-columns:1fr}.map-frame{height:300px}}
+:root{--teal:#0b6b70;--deep:#12464b;--mint:#e4f4f1;--cream:#f8f7f2;--ink:#173b40;--muted:#5c7274;--danger:#ad2929;--danger-bg:#fff0ee;--line:#dce9e6}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}.topbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 3px 18px #173b4010}.nav{max-width:1120px;margin:auto;min-height:76px;padding:10px 20px;display:flex;align-items:center;gap:14px}.brand-mark{width:48px;height:48px;border-radius:15px;background:var(--mint);display:grid;place-items:center;color:var(--teal);font-size:26px;flex:none}.brand-mark img{display:block;width:100%;height:100%;object-fit:contain;padding:4px}.brand{font-weight:850;font-size:1.22rem;line-height:1.1;letter-spacing:-.03em}.brand small{display:block;margin-top:4px;font-weight:550;font-size:.72rem;letter-spacing:0;color:var(--muted)}.navlinks{display:flex;gap:18px;margin-left:auto;align-items:center}.navlinks a,.quick-exit{font-size:.9rem;font-weight:700;text-decoration:none;color:var(--deep)}.quick-exit{background:#f1e8e7;border:1px solid #e4cccc;border-radius:10px;padding:9px 12px}.wrap{max-width:1120px;margin:auto;padding:26px 20px 60px}.intro{padding:20px 0 16px}.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;font-weight:800;color:var(--teal)}h1{font-size:clamp(2rem,5vw,3.35rem);line-height:1.07;letter-spacing:-.045em;margin:8px 0 12px}h2{font-size:clamp(1.35rem,3vw,2rem);letter-spacing:-.03em;margin:0 0 8px}h3{font-size:1.08rem;margin:0 0 6px}.subtitle{max-width:760px;color:var(--muted);font-size:1.08rem;margin:0}.urgency{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0 32px}.urgent-card{border-radius:18px;padding:18px 20px;display:flex;gap:14px;align-items:center;background:var(--danger-bg);border:1px solid #f0c9c4;min-width:0}.urgent-card.suicide{background:#fff7e8;border-color:#f2dcac}.urgent-icon{width:48px;height:48px;display:grid;place-items:center;background:white;border-radius:14px;font-size:25px;flex:none}.urgent-card p{margin:3px 0 12px;font-size:.9rem;color:#664d4d}.urgent-card.suicide p{color:#6b5a34}.call-btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;background:var(--danger);color:white;text-decoration:none;padding:10px 14px;font-size:.95rem;font-weight:800;min-height:44px}.suicide .call-btn{background:#8c5a00}.section{margin:34px 0}.section-head{margin-bottom:16px}.section-head p{color:var(--muted);margin:0}.search-panel{background:white;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 30px #123b4010}.search-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.field label{display:block;font-weight:750;font-size:.92rem;margin-bottom:6px}.field select,.field input{width:100%;min-height:48px;border:1px solid #c9d9d7;border-radius:10px;background:white;padding:11px 12px;color:var(--ink);font:inherit}.location-row{display:flex;gap:8px}.location-select-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.location-select-grid label{display:block;font-weight:750;font-size:.84rem;margin-bottom:5px}.location-select-grid select{width:100%;min-height:46px;border:1px solid #c9d9d7;border-radius:10px;background:white;padding:9px;color:var(--ink);font:inherit}.custom-location{margin-top:10px}.custom-location[hidden]{display:none!important}.location-row input{flex:1;min-width:0}.secondary-btn,.primary-btn{min-height:46px;border-radius:10px;padding:10px 15px;font:inherit;font-weight:800;cursor:pointer}.secondary-btn{border:1px solid #b8d4d0;background:var(--mint);color:var(--deep)}.primary-btn{background:var(--teal);color:white;border:1px solid var(--teal)}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.hint{font-size:.85rem;color:var(--muted);margin:8px 0 0}.results{margin-top:18px}.results-status{background:#f1f8f7;padding:13px 15px;border-radius:12px;margin-bottom:12px}.resource-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.resource{border:1px solid var(--line);border-radius:14px;padding:15px;background:white}.resource p{margin:4px 0;color:var(--muted);font-size:.92rem}.resource a{color:var(--teal);font-weight:750;overflow-wrap:anywhere}.map-frame{width:100%;height:350px;border:1px solid var(--line);border-radius:14px;background:#edf5f3}.empty{border:1px dashed #b6ceca;padding:18px;border-radius:14px;color:var(--muted);background:#fbfdfc}.category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.category{background:white;border:1px solid var(--line);border-radius:17px;padding:18px;text-decoration:none;color:inherit;min-width:0;transition:transform .15s,box-shadow .15s}.category:hover{transform:translateY(-2px);box-shadow:0 8px 20px #123b4010}.category-icon{font-size:1.65rem;margin-bottom:10px}.category p{font-size:.91rem;color:var(--muted);margin:5px 0 0}.support{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.support-card{padding:18px;background:var(--mint);border-radius:16px;border:1px solid #cae5df}.support-card strong{font-size:1.25rem;display:block;color:var(--deep);margin:5px 0}.support-card p{margin:4px 0 0;color:var(--muted);font-size:.9rem}footer{background:var(--deep);color:#eaf6f4;padding:30px 20px}footer .foot{max-width:1120px;margin:auto;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}footer p{margin:5px 0;color:#d2e6e3;font-size:.9rem}.disclaimer{font-size:.85rem;color:var(--muted);margin-top:14px}.mobile-menu{display:none}.mobile-links{display:none}.mobile-links.open{display:flex}
+@media(min-width:761px){.mobile-links{display:none!important}}
+@media(max-width:760px){.nav{min-height:68px;padding:9px 14px;gap:10px}.brand-mark{width:42px;height:42px}.brand{font-size:1.05rem}.brand small{font-size:.66rem}.navlinks{display:none}.mobile-menu{display:block;margin-left:auto;border:1px solid var(--line);background:white;color:var(--deep);border-radius:10px;padding:9px 11px;font-weight:800}.mobile-links{display:none;padding:0 14px 12px;gap:8px;flex-wrap:wrap}.mobile-links.open{display:flex}.mobile-links a{padding:8px 10px;text-decoration:none;color:var(--deep);font-weight:700;background:var(--mint);border-radius:9px;font-size:.9rem}.quick-exit{font-size:.78rem;padding:8px 9px}.wrap{padding:18px 14px 44px}.intro{padding-top:14px}.urgency{gap:10px;margin:14px 0 26px}.urgent-card{padding:14px;display:block}.urgent-icon{width:40px;height:40px;margin-bottom:9px}.urgent-card p{font-size:.84rem}.call-btn{width:100%;padding:10px}.search-panel{padding:16px}.search-grid{grid-template-columns:1fr;gap:13px}.location-row{flex-direction:column}.location-select-grid{grid-template-columns:1fr;gap:10px}.actions{flex-direction:column}.actions button{width:100%}.resource-list{grid-template-columns:1fr}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.category{padding:14px}.category p{font-size:.86rem}.support{grid-template-columns:1fr}.map-frame{height:300px}.location-select-grid select{font-size:.95rem}}
 @media(max-width:420px){.urgency{grid-template-columns:1fr}.urgent-card{display:flex;align-items:flex-start}.urgent-icon{margin:0}.category-grid{grid-template-columns:1fr}.brand small{max-width:180px}}
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
 </head>
 <body>
 <header class="topbar"><div class="nav"><div class="brand-mark"><img src="./assets/cuidar-logo.svg" alt="Símbolo de Cuid.ar"></div><div class="brand">Cuid.ar<small>Red de Contención Argentina</small></div><nav class="navlinks" aria-label="Principal"><a href="#donde-voy">¿Dónde voy?</a><a href="#situaciones">Situaciones</a><a href="#lineas">Líneas de ayuda</a></nav><a class="quick-exit" href="https://www.google.com" aria-label="Salida rápida" id="quickExit">Salida rápida ↗</a><button class="mobile-menu" id="menuBtn" aria-expanded="false" aria-controls="mobileLinks">Menú ☰</button></div><nav class="mobile-links" id="mobileLinks" aria-label="Navegación móvil"><a href="#donde-voy">¿Dónde voy?</a><a href="#situaciones">Situaciones</a><a href="#lineas">Líneas de ayuda</a></nav></header>
 <main class="wrap"><section class="intro"><div class="eyebrow">Orientación y recursos cerca tuyo</div><h1>No estás solo.<br>Hay ayuda disponible.</h1><p class="subtitle">Una guía para saber a quién llamar y dónde acudir cuando vos o alguien de tu entorno necesita ayuda.</p></section>
 <section class="urgency" aria-label="Ayuda urgente"><article class="urgent-card"><div class="urgent-icon" aria-hidden="true">☎️</div><div><h2>¿Estás en peligro inmediato?</h2><p>Si hay una amenaza o una emergencia que pone a alguien en riesgo, llamá al 911.</p><a class="call-btn" href="tel:911">Llamar al 911</a></div></article><article class="urgent-card suicide"><div class="urgent-icon" aria-hidden="true">💛</div><div><h2>¿Necesitás ayuda emocional urgente?</h2><p>Orientación nacional en crisis de salud mental, las 24 horas.</p><a class="call-btn" href="tel:08009990091">Llamar al 0800-999-0091</a></div></article></section>
-<section class="section" id="donde-voy"><div class="section-head"><div class="eyebrow">Encontrá el próximo paso</div><h2>¿Dónde voy?</h2><p>Elegí una situación, un tipo de servicio, una ubicación o simplemente buscá todos los recursos disponibles.</p></div><div class="search-panel"><div class="search-grid"><div class="field"><label for="situation">¿Qué situación estás atravesando? (opcional)</label><select id="situation"><option value="">Todas las situaciones</option><option>Violencia de género o de pareja</option><option>Violencia psicológica, amenazas o control</option><option>Violencia familiar</option><option>Violencia sexual o violación</option><option>Maltrato o posible abuso infantil</option><option>Grooming o abuso digital</option><option>Bullying o ciberacoso</option><option>Crisis emocional o riesgo de suicidio</option><option>Ambulancia o urgencia médica</option><option>Consumos problemáticos</option><option>Persona mayor, demencia o falta de cuidados</option><option>Residencia geriátrica o centro de día</option><option>Niñez, adolescencia o conflicto familiar</option><option>Problemas escolares</option><option>Refugio o alojamiento seguro</option><option>Asistencia social o alimentaria</option><option>Discapacidad y rehabilitación</option><option>Asesoramiento jurídico</option><option>Familia sin red de apoyo</option></select></div><div class="field"><label for="service">¿Qué recurso necesitás? (opcional)</label><select id="service"><option value="">Todos los tipos de recursos</option><option>Hospital o guardia</option><option>Centro de salud</option><option>Salud mental</option><option>Ambulancia / emergencias médicas</option><option>Comisaría</option><option>Fiscalía o juzgado</option><option>Defensoría o asesoramiento jurídico</option><option>Servicio de niñez</option><option>Refugio o alojamiento protegido</option><option>Residencia geriátrica</option><option>Centro de día para personas mayores</option><option>PAMI</option><option>Cuidados domiciliarios</option><option>Trabajo social</option><option>Escuela u orientación escolar</option><option>Atención a víctimas de delitos</option><option>Atención de violencia de género</option><option>Prevención y asistencia en grooming</option><option>Apoyo por consumos problemáticos</option><option>Comedor o asistencia alimentaria</option><option>Servicio para discapacidad</option><option>Organización comunitaria</option></select></div><div class="field"><label for="location">Ciudad o localidad (opcional)</label><input id="location" type="text" placeholder="Ej.: San Telmo, CABA" autocomplete="street-address"></div><div class="field"><label for="nearby">O utilizá tu ubicación</label><button class="secondary-btn" id="geoBtn" type="button">◎ Usar mi ubicación</button><p class="hint" id="geoStatus">La ubicación solo se consulta si das permiso al navegador.</p></div></div><div class="actions"><button class="primary-btn" id="searchBtn" type="button">Buscar recursos en el mapa</button><button class="secondary-btn" id="clearBtn" type="button">Ver todos los recursos</button><button class="secondary-btn" id="externalBtn" type="button">Alternativa: Google Maps ↗</button></div><p class="disclaimer">La búsqueda propia muestra los recursos cargados en Cuid.ar. Si no elegís filtros, intentará mostrar todo el directorio. Los recursos deben verificarse antes de confiar en sus datos.</p><div class="results" id="results" aria-live="polite"><div class="empty">El directorio está preparado, pero todavía no tiene instituciones cargadas. Podés abrir una búsqueda externa en Google Maps.</div></div></div></section>
+<section class="section" id="donde-voy"><div class="section-head"><div class="eyebrow">Encontrá el próximo paso</div><h2>¿Dónde voy?</h2><p>Elegí una situación, un tipo de servicio, una ubicación o simplemente buscá todos los recursos disponibles.</p></div><div class="search-panel"><div class="search-grid"><div class="field"><label for="situation">¿Qué situación estás atravesando? (opcional)</label><select id="situation"><option value="">Todas las situaciones</option><option>Violencia de género o de pareja</option><option>Violencia psicológica, amenazas o control</option><option>Violencia familiar</option><option>Violencia sexual o violación</option><option>Maltrato o posible abuso infantil</option><option>Grooming o abuso digital</option><option>Bullying o ciberacoso</option><option>Crisis emocional o riesgo de suicidio</option><option>Ambulancia o urgencia médica</option><option>Consumos problemáticos</option><option>Persona mayor, demencia o falta de cuidados</option><option>Residencia geriátrica o centro de día</option><option>Niñez, adolescencia o conflicto familiar</option><option>Problemas escolares</option><option>Refugio o alojamiento seguro</option><option>Asistencia social o alimentaria</option><option>Discapacidad y rehabilitación</option><option>Asesoramiento jurídico</option><option>Familia sin red de apoyo</option></select></div><div class="field"><label for="service">¿Qué recurso necesitás? (opcional)</label><select id="service"><option value="">Todos los tipos de recursos</option><option>Hospital o guardia</option><option>Centro de salud</option><option>Salud mental</option><option>Ambulancia / emergencias médicas</option><option>Comisaría</option><option>Fiscalía o juzgado</option><option>Defensoría o asesoramiento jurídico</option><option>Servicio de niñez</option><option>Refugio o alojamiento protegido</option><option>Residencia geriátrica</option><option>Centro de día para personas mayores</option><option>PAMI</option><option>Cuidados domiciliarios</option><option>Trabajo social</option><option>Escuela u orientación escolar</option><option>Atención a víctimas de delitos</option><option>Atención de violencia de género</option><option>Prevención y asistencia en grooming</option><option>Apoyo por consumos problemáticos</option><option>Comedor o asistencia alimentaria</option><option>Servicio para discapacidad</option><option>Organización comunitaria</option></select></div><div class="field"><div class="location-select-grid"><div><label for="province">Provincia / jurisdicción</label><select id="province"><option value="">Cargando provincias…</option></select></div><div><label for="locality">Ciudad / localidad / partido</label><select id="locality" disabled><option value="">Elegí primero una provincia</option></select></div></div><div class="custom-location" id="otherLocalityWrap" hidden><label for="otherLocality">Otra localidad</label><input id="otherLocality" type="text" placeholder="Escribí tu localidad"></div><p class="hint" id="localityStatus">CABA y Provincia de Buenos Aires aparecen como jurisdicciones diferentes.</p></div><div class="field"><label for="nearby">O utilizá tu ubicación</label><button class="secondary-btn" id="geoBtn" type="button">◎ Usar mi ubicación</button><p class="hint" id="geoStatus">La ubicación solo se consulta si das permiso al navegador.</p></div></div><div class="actions"><button class="primary-btn" id="searchBtn" type="button">Buscar recursos</button><button class="secondary-btn" id="clearBtn" type="button">Ver todos los recursos</button><button class="secondary-btn" id="externalBtn" type="button">Alternativa: Google Maps ↗</button></div><p class="disclaimer">La búsqueda propia muestra los recursos cargados en Cuid.ar. Si no elegís filtros, intentará mostrar todo el directorio. Los recursos deben verificarse antes de confiar en sus datos.</p><div class="results" id="results" aria-live="polite"><div class="empty">El directorio está preparado, pero todavía no tiene instituciones cargadas. Podés abrir una búsqueda externa en Google Maps.</div></div></div></section>
 <section class="section" id="situaciones"><div class="section-head"><div class="eyebrow">Orientación por necesidad</div><h2>¿Qué está pasando?</h2><p>Entrá por la situación que más se acerque a lo que necesitás. No hace falta conocer el nombre de una institución.</p></div><div class="category-grid"><a class="category" href="#donde-voy" data-situation="Violencia de género o de pareja"><div class="category-icon">🛡️</div><h3>Violencia de género o de pareja</h3><p>Orientación, protección y acompañamiento.</p></a><a class="category" href="#donde-voy" data-situation="Violencia psicológica, amenazas o control"><div class="category-icon">🫶</div><h3>Violencia psicológica y control</h3><p>Humillaciones, amenazas, manipulación o aislamiento.</p></a><a class="category" href="#donde-voy" data-situation="Violencia sexual o violación"><div class="category-icon">🧡</div><h3>Violencia sexual</h3><p>Ayuda y orientación para buscar protección y atención médica.</p></a><a class="category" href="#donde-voy" data-situation="Maltrato o posible abuso infantil"><div class="category-icon">🧸</div><h3>Niñez y posible maltrato</h3><p>Protección de niñas, niños y adolescentes.</p></a><a class="category" href="#donde-voy" data-situation="Grooming o abuso digital"><div class="category-icon">📱</div><h3>Grooming y abuso digital</h3><p>Orientación ante captación, amenazas o abuso en línea.</p></a><a class="category" href="#donde-voy" data-situation="Bullying o ciberacoso"><div class="category-icon">🏫</div><h3>Bullying y ciberacoso</h3><p>Pasos para pedir intervención y encontrar orientación.</p></a><a class="category" href="#donde-voy" data-situation="Crisis emocional o riesgo de suicidio"><div class="category-icon">💛</div><h3>Crisis emocional</h3><p>Atención urgente y apoyo para la persona y sus cercanos.</p></a><a class="category" href="#donde-voy" data-situation="Persona mayor, demencia o falta de cuidados"><div class="category-icon">🌷</div><h3>Personas mayores y demencia</h3><p>PAMI, atención médica, cuidados y apoyo familiar.</p></a><a class="category" href="#donde-voy" data-situation="Residencia geriátrica o centro de día"><div class="category-icon">🏡</div><h3>Geriátricos y centros de día</h3><p>Recursos para cuidados y acompañamiento.</p></a><a class="category" href="#donde-voy" data-situation="Refugio o alojamiento seguro"><div class="category-icon">🏠</div><h3>Refugio y alojamiento seguro</h3><p>Orientación para buscar un lugar protegido.</p></a><a class="category" href="#donde-voy" data-situation="Consumos problemáticos"><div class="category-icon">🤝</div><h3>Consumos problemáticos</h3><p>Atención, tratamiento y acompañamiento.</p></a><a class="category" href="#donde-voy" data-situation="Familia sin red de apoyo"><div class="category-icon">🧭</div><h3>Apoyo social y familiar</h3><p>Orientación para encontrar asistencia y contención.</p></a></div></section>
 <section class="section" id="lineas"><div class="section-head"><div class="eyebrow">Ayuda telefónica</div><h2>Líneas de atención</h2><p>Verificá disponibilidad y alcance del servicio según tu localidad.</p></div><div class="support"><article class="support-card"><h3>Emergencias</h3><strong>911</strong><p>Peligro inmediato en Argentina.</p><a href="tel:911">Llamar</a></article><article class="support-card"><h3>Urgencias de salud mental</h3><strong>0800-999-0091</strong><p>Atención nacional gratuita, confidencial y disponible las 24 horas.</p><a href="tel:08009990091">Llamar</a></article><article class="support-card"><h3>PAMI Escucha y Responde</h3><strong>138</strong><p>Consultas y orientación sobre prestaciones de PAMI, según sus condiciones de atención.</p><a href="tel:138">Llamar</a></article><article class="support-card"><h3>Violencia y abuso</h3><strong>137</strong><p>Atención y acompañamiento en situaciones de violencia familiar o sexual.</p><a href="tel:137">Llamar</a></article><article class="support-card"><h3>Derechos de niñas, niños y adolescentes</h3><strong>102</strong><p>Orientación y protección de derechos de niñas, niños y adolescentes. No reemplaza una emergencia médica.</p><a href="tel:102">Llamar</a></article><article class="support-card"><h3>Víctimas de delitos</h3><strong>149</strong><p>Orientación y asistencia a víctimas de delitos.</p><a href="tel:149">Llamar</a></article></div><p class="disclaimer">Antes de publicar, verificá los teléfonos, horarios, cobertura y fuentes oficiales. SAME 107 corresponde a CABA; los números de emergencias médicas pueden variar según jurisdicción.</p></section></main><footer><div class="foot"><div><strong>Cuid.ar — Red de Contención Argentina</strong><p>Una guía para saber a quién llamar y dónde acudir.</p></div><p>Información de orientación. No reemplaza a profesionales ni a los servicios de emergencia.</p></div></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
 <script>
-const $=id=>document.getElementById(id);let userCoords=null;let resources=[];
-$('menuBtn').addEventListener('click',()=>{const open=$('mobileLinks').classList.toggle('open');$('menuBtn').setAttribute('aria-expanded',String(open));});
-$('quickExit').addEventListener('click',()=>{try{window.location.replace('https://www.google.com');}catch(e){}});
-fetch('./data/instituciones.json').then(r=>{if(!r.ok)throw new Error('No está disponible el directorio.');return r.json()}).then(data=>{resources=Array.isArray(data)?data:[];}).catch(()=>{resources=[];});
-$('geoBtn').addEventListener('click',()=>{if(!navigator.geolocation){$('geoStatus').textContent='Este navegador no ofrece geolocalización. Escribí tu localidad.';return;}$('geoStatus').textContent='Solicitando permiso de ubicación…';navigator.geolocation.getCurrentPosition(p=>{userCoords={lat:p.coords.latitude,lon:p.coords.longitude};$('geoStatus').textContent='Ubicación disponible para esta búsqueda. No se guarda.';},()=>{$('geoStatus').textContent='No se pudo acceder a la ubicación. Podés escribir tu localidad.';},{enableHighAccuracy:true,timeout:10000,maximumAge:60000});});
-function distanceKm(a,b){const R=6371,dLat=(b.lat-a.lat)*Math.PI/180,dLon=(b.lon-a.lon)*Math.PI/180,lat1=a.lat*Math.PI/180,lat2=b.lat*Math.PI/180;const x=Math.sin(dLat/2)**2+Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLon/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
-function search(){const sit=$('situation').value,svc=$('service').value,loc=$('location').value.trim();let list=resources.filter(r=>(!sit||[r.situation,...(r.situations||[]),...(r.tags||[])].filter(Boolean).some(x=>String(x).toLowerCase().includes(sit.toLowerCase())||sit.toLowerCase().includes(String(x).toLowerCase())))&&(!svc||String(r.type||r.service||'').toLowerCase().includes(svc.toLowerCase())||String(r.category||'').toLowerCase().includes(svc.toLowerCase()))&&(!loc||[r.city,r.locality,r.province,r.address].filter(Boolean).join(' ').toLowerCase().includes(loc.toLowerCase())));if(userCoords){list=list.map(r=>({...r,_distance:typeof r.lat==='number'&&typeof r.lon==='number'?distanceKm(userCoords,{lat:r.lat,lon:r.lon}):null})).sort((a,b)=>(a._distance??Infinity)-(b._distance??Infinity));}
-const results=$('results');if(!list.length){results.innerHTML='<div class="empty"><strong>No hay instituciones cargadas que coincidan todavía.</strong><br>El directorio propio está vacío o no contiene coincidencias. Podés quitar los filtros o usar Google Maps como alternativa.</div>';return;}
-const valid=list.filter(r=>typeof r.lat==='number'&&typeof r.lon==='number');let html='<div class="results-status">Se encontraron '+list.length+' recurso(s) en el directorio de Cuid.ar.'+(userCoords?' Ordenados por cercanía cuando hay coordenadas.':'')+'</div>';if(valid.length){const center=userCoords?[userCoords.lat,userCoords.lon]:[valid[0].lat,valid[0].lon];const markers=valid.map(r=>`marker=${r.lat}%2C${r.lon}`).join('&');html+=`<iframe class="map-frame" title="Mapa de recursos de Cuid.ar" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=${Math.min(...valid.map(r=>r.lon))}%2C${Math.min(...valid.map(r=>r.lat))}%2C${Math.max(...valid.map(r=>r.lon))}%2C${Math.max(...valid.map(r=>r.lat))}&layer=mapnik"></iframe>`;}html+='<div class="resource-list">'+list.map(r=>`<article class="resource"><h3>${escapeHtml(r.name||'Institución')}</h3><p>${escapeHtml(r.type||r.service||r.category||'Recurso de orientación')}</p><p>${escapeHtml([r.address,r.locality||r.city,r.province].filter(Boolean).join(', '))}</p>${r._distance!==undefined&&r._distance!==null?`<p>A ${r._distance.toFixed(1)} km aproximadamente</p>`:''}${r.phone?`<p>Teléfono: <a href="tel:${String(r.phone).replace(/[^\d+]/g,'')}">${escapeHtml(r.phone)}</a></p>`:''}${r.website?`<p><a target="_blank" rel="noopener" href="${escapeAttr(r.website)}">Sitio oficial ↗</a></p>`:''}${r.source?`<p>Fuente: <a target="_blank" rel="noopener" href="${escapeAttr(r.source)}">verificar ↗</a></p>`:''}</article>`).join('')+'</div>';results.innerHTML=html;}
-function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}function escapeAttr(v){return escapeHtml(v);}
-$('searchBtn').addEventListener('click',search);$('clearBtn').addEventListener('click',()=>{$('situation').value='';$('service').value='';$('location').value='';userCoords=null;$('geoStatus').textContent='La ubicación solo se consulta si das permiso al navegador.';search();});$('externalBtn').addEventListener('click',()=>{const q=[$('service').value,$('situation').value,$('location').value].filter(Boolean).join(' ');window.open('https://www.google.com/maps/search/'+encodeURIComponent(q||'instituciones de asistencia y servicios sociales Argentina'),'_blank','noopener');});document.querySelectorAll('[data-situation]').forEach(a=>a.addEventListener('click',()=>{$('situation').value=a.dataset.situation;}));
+
+const $ = id => document.getElementById(id);
+const GEOREF = "https://apis.datos.gob.ar/georef/api";
+let userCoords = null;
+let resources = [];
+let resourcesLoaded = false;
+let geographyReady = false;
+let cuidarMap = null;
+
+const FALLBACK_PROVINCES = [
+  {id:"02", nombre:"Ciudad Autónoma de Buenos Aires"},
+  {id:"06", nombre:"Buenos Aires"},
+  {id:"10", nombre:"Catamarca"},
+  {id:"22", nombre:"Chaco"},
+  {id:"26", nombre:"Chubut"},
+  {id:"14", nombre:"Córdoba"},
+  {id:"18", nombre:"Corrientes"},
+  {id:"34", nombre:"Formosa"},
+  {id:"30", nombre:"Entre Ríos"},
+  {id:"38", nombre:"Jujuy"},
+  {id:"42", nombre:"La Pampa"},
+  {id:"46", nombre:"La Rioja"},
+  {id:"50", nombre:"Mendoza"},
+  {id:"54", nombre:"Misiones"},
+  {id:"58", nombre:"Neuquén"},
+  {id:"62", nombre:"Río Negro"},
+  {id:"66", nombre:"Salta"},
+  {id:"70", nombre:"San Juan"},
+  {id:"74", nombre:"San Luis"},
+  {id:"78", nombre:"Santa Cruz"},
+  {id:"82", nombre:"Santa Fe"},
+  {id:"86", nombre:"Santiago del Estero"},
+  {id:"94", nombre:"Tierra del Fuego, Antártida e Islas del Atlántico Sur"},
+  {id:"90", nombre:"Tucumán"}
+];
+
+function displayProvinceName(name) {
+  if (name === "Ciudad Autónoma de Buenos Aires") return "CABA — Ciudad Autónoma de Buenos Aires";
+  if (name === "Buenos Aires") return "Provincia de Buenos Aires";
+  return name;
+}
+function option(text, value, extra) {
+  const el = document.createElement("option");
+  el.textContent = text;
+  el.value = value;
+  if (extra) Object.keys(extra).forEach(key => el.dataset[key] = extra[key]);
+  return el;
+}
+async function loadProvinces() {
+  const select = $("province");
+  select.innerHTML = "";
+  select.appendChild(option("Elegí una provincia o CABA", ""));
+  let provinces = [];
+  try {
+    const response = await fetch(GEOREF + "/provincias?campos=id,nombre&max=100");
+    if (!response.ok) throw new Error("Georef no disponible");
+    const data = await response.json();
+    provinces = Array.isArray(data.provincias) ? data.provincias : [];
+    if (!provinces.length) throw new Error("Catálogo vacío");
+  } catch (e) {
+    provinces = FALLBACK_PROVINCES;
+    $("localityStatus").textContent = "No pudimos cargar el catálogo geográfico oficial ahora. La lista de provincias de respaldo está disponible; si las localidades no cargan, usá Google Maps.";
+  }
+  provinces.sort((a,b) => {
+    const rank = n => n === "Ciudad Autónoma de Buenos Aires" ? 0 : n === "Buenos Aires" ? 1 : 2;
+    return rank(a.nombre)-rank(b.nombre) || a.nombre.localeCompare(b.nombre, "es");
+  });
+  provinces.forEach(p => select.appendChild(option(displayProvinceName(p.nombre), p.id || p.nombre, {rawName:p.nombre})));
+  geographyReady = true;
+}
+async function loadLocalities() {
+  const p = $("province").selectedOptions[0];
+  const select = $("locality");
+  const wrap = $("otherLocalityWrap");
+  wrap.hidden = true;
+  $("otherLocality").value = "";
+  select.innerHTML = "";
+  if (!p || !p.value) {
+    select.disabled = true;
+    select.appendChild(option("Elegí primero una provincia", ""));
+    $("localityStatus").textContent = "CABA y Provincia de Buenos Aires son opciones separadas.";
+    return;
+  }
+  select.disabled = true;
+  select.appendChild(option("Cargando localidades oficiales…", ""));
+  $("localityStatus").textContent = "Consultando el catálogo geográfico oficial de Argentina.";
+  const provName = p.dataset.rawName || p.textContent;
+  const provinceId = p.value;
+  let localities = [];
+  try {
+    const url = GEOREF + "/localidades?provincia=" + encodeURIComponent(provinceId) + "&campos=id,nombre,centroide&max=5000&orden=nombre";
+    let response = await fetch(url);
+    if (!response.ok) throw new Error("Consulta por identificador fallida");
+    let data = await response.json();
+    localities = Array.isArray(data.localidades) ? data.localidades : [];
+    if (!localities.length && provinceId !== provName) {
+      response = await fetch(GEOREF + "/localidades?provincia=" + encodeURIComponent(provName) + "&campos=id,nombre,centroide&max=5000&orden=nombre");
+      if (response.ok) {
+        data = await response.json();
+        localities = Array.isArray(data.localidades) ? data.localidades : [];
+      }
+    }
+  } catch (e) {
+    localities = [];
+  }
+  select.innerHTML = "";
+  select.appendChild(option("Todas las localidades de " + displayProvinceName(provName), "__all__", {rawName:""}));
+  localities.sort((a,b) => String(a.nombre).localeCompare(String(b.nombre), "es"));
+  const seen = new Set();
+  localities.forEach(loc => {
+    const name = String(loc.nombre || "").trim();
+    if (!name || seen.has(name.toLocaleLowerCase("es"))) return;
+    seen.add(name.toLocaleLowerCase("es"));
+    const coords = loc.centroide || {};
+    select.appendChild(option(name, String(loc.id || name), {
+      rawName:name,
+      lat: Number.isFinite(Number(coords.lat)) ? String(coords.lat) : "",
+      lon: Number.isFinite(Number(coords.lon)) ? String(coords.lon) : ""
+    }));
+  });
+  select.appendChild(option("Otra localidad…", "__other__"));
+  select.disabled = false;
+  if (!localities.length) {
+    $("localityStatus").textContent = "No se pudieron cargar las localidades. Podés escribir otra localidad o buscar con la provincia completa.";
+  } else {
+    $("localityStatus").textContent = localities.length + " localidades cargadas desde Georef, el catálogo geográfico oficial de Argentina.";
+  }
+}
+$("province").addEventListener("change", loadLocalities);
+$("locality").addEventListener("change", () => {
+  $("otherLocalityWrap").hidden = $("locality").value !== "__other__";
+});
+$("menuBtn").addEventListener("click", () => {
+  const open = $("mobileLinks").classList.toggle("open");
+  $("menuBtn").setAttribute("aria-expanded", String(open));
+});
+$("quickExit").addEventListener("click", () => {
+  try { window.location.replace("https://www.google.com"); } catch (e) {}
+});
+fetch("./data/instituciones.json")
+  .then(r => { if (!r.ok) throw new Error("No está disponible el directorio."); return r.json(); })
+  .then(data => { resources = Array.isArray(data) ? data : []; resourcesLoaded = true; })
+  .catch(() => { resources = []; resourcesLoaded = false; });
+
+function distanceKm(a,b) {
+  const R=6371, dLat=(b.lat-a.lat)*Math.PI/180, dLon=(b.lon-a.lon)*Math.PI/180;
+  const lat1=a.lat*Math.PI/180, lat2=b.lat*Math.PI/180;
+  const x=Math.sin(dLat/2)**2+Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLon/2)**2;
+  return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));
+}
+function selectedProvince() {
+  const p = $("province").selectedOptions[0];
+  return p && p.value ? {id:p.value, name:p.dataset.rawName || p.textContent, label:p.textContent} : null;
+}
+function selectedLocality() {
+  const loc = $("locality").selectedOptions[0];
+  if (!loc || !loc.value || loc.value === "__all__" || loc.value === "__other__") return null;
+  return {name:loc.dataset.rawName || loc.textContent, lat:loc.dataset.lat ? Number(loc.dataset.lat) : null, lon:loc.dataset.lon ? Number(loc.dataset.lon) : null};
+}
+function locationPhrase() {
+  const p = selectedProvince();
+  if (!p) return "";
+  const locValue = $("locality").value;
+  let locationName = "";
+  if (locValue === "__other__") locationName = $("otherLocality").value.trim();
+  else if (locValue && locValue !== "__all__") locationName = selectedLocality()?.name || "";
+  const provLabel = p.name === "Ciudad Autónoma de Buenos Aires" ? "CABA" : (p.name === "Buenos Aires" ? "Provincia de Buenos Aires" : "Provincia de " + p.name);
+  if (locationName && p.name !== "Ciudad Autónoma de Buenos Aires") return locationName + ", " + provLabel + ", Argentina";
+  if (locationName && p.name === "Ciudad Autónoma de Buenos Aires" && locationName !== p.name) return locationName + ", CABA, Argentina";
+  return provLabel + ", Argentina";
+}
+function escapeHtml(v) {
+  return String(v).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+}
+function mapsTerms() {
+  const service = $("service").value;
+  if (service) return service;
+  const situation = $("situation").value;
+  const terms = {
+    "Violencia de género o de pareja":"servicios de atención a violencia de género, comisarías, fiscalías y refugios",
+    "Violencia psicológica, amenazas o control":"asistencia a víctimas de violencia familiar, comisarías, fiscalías y asesoramiento",
+    "Violencia familiar":"servicios de violencia familiar, comisarías, fiscalías y refugios",
+    "Violencia sexual o violación":"guardias hospitalarias, atención a víctimas de violencia sexual y fiscalías",
+    "Maltrato o posible abuso infantil":"servicios locales de niñez, defensorías y atención médica infantil",
+    "Grooming o abuso digital":"servicios de protección de niñez, fiscalías y orientación por grooming",
+    "Bullying o ciberacoso":"orientación escolar, servicios de niñez y salud mental",
+    "Crisis emocional o riesgo de suicidio":"guardias de salud mental, hospitales y centros de salud",
+    "Ambulancia o urgencia médica":"hospitales con guardia y servicios de emergencia médica",
+    "Consumos problemáticos":"centros de atención de consumos problemáticos y salud mental",
+    "Persona mayor, demencia o falta de cuidados":"PAMI, centros de día, geriátricos y centros de salud",
+    "Residencia geriátrica o centro de día":"residencias geriátricas y centros de día para personas mayores",
+    "Niñez, adolescencia o conflicto familiar":"servicios locales de niñez y orientación familiar",
+    "Problemas escolares":"orientación escolar, gabinetes psicopedagógicos y salud mental",
+    "Refugio o alojamiento seguro":"refugios, alojamientos protegidos y asistencia social",
+    "Asistencia social o alimentaria":"servicios sociales, comedores y asistencia alimentaria",
+    "Discapacidad y rehabilitación":"centros de rehabilitación y servicios para discapacidad",
+    "Asesoramiento jurídico":"defensorías públicas, asesoramiento jurídico gratuito y fiscalías",
+    "Familia sin red de apoyo":"servicios sociales, centros comunitarios y asistencia familiar"
+  };
+  return terms[situation] || "hospitales, centros de salud, comisarías, fiscalías, residencias geriátricas, centros de día, refugios y servicios sociales";
+}
+function mapsSearchUrl() {
+  let place = locationPhrase();
+  if (!place && userCoords) place = userCoords.lat + "," + userCoords.lon;
+  const query = mapsTerms() + (place ? " en " + place : " en Argentina");
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query);
+}
+function renderMapFallback(placeKnown) {
+  const results = $("results");
+  const url = mapsSearchUrl();
+  let html = '<div class="results-status"><strong>El directorio propio de Cuid.ar todavía no tiene instituciones cargadas.</strong><br>';
+  if (placeKnown) {
+    html += 'Para que la búsqueda no termine sin resultados, te mostramos una búsqueda externa en Google Maps para la zona elegida. Sus datos no están verificados por Cuid.ar.</div>';
+    html += '<iframe class="map-frame" title="Resultados externos de Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=' + encodeURIComponent(mapsTerms() + " en " + (locationPhrase() || (userCoords ? userCoords.lat + "," + userCoords.lon : ""))) + '&output=embed"></iframe>';
+    html += '<p><a class="primary-btn" style="display:inline-flex;align-items:center;text-decoration:none" target="_blank" rel="noopener" href="' + url + '">Abrir resultados en Google Maps ↗</a></p>';
+  } else {
+    html += 'Elegí una provincia/localidad o usá tu ubicación para centrar la búsqueda. También podés abrir una búsqueda general externa.</div>';
+    html += '<p><a class="primary-btn" style="display:inline-flex;align-items:center;text-decoration:none" target="_blank" rel="noopener" href="' + url + '">Buscar recursos en Google Maps ↗</a></p>';
+  }
+  results.innerHTML = html;
+}
+function drawResourceMap(list) {
+  const valid = list.filter(r => Number.isFinite(Number(r.lat)) && Number.isFinite(Number(r.lon)));
+  if (!valid.length) {
+    $("resourceMapWrap")?.remove();
+    return;
+  }
+  const center = userCoords || (selectedLocality() && selectedLocality().lat !== null ? {lat:selectedLocality().lat, lon:selectedLocality().lon} : {lat:Number(valid[0].lat),lon:Number(valid[0].lon)});
+  if (typeof L === "undefined") {
+    $("results").insertAdjacentHTML("afterbegin", '<p class="hint">No se pudo cargar el mapa interactivo; podés abrir las ubicaciones en Google Maps.</p>');
+    return;
+  }
+  if (cuidarMap) { cuidarMap.remove(); cuidarMap = null; }
+  const mapNode = $("resourceMap");
+  if (!mapNode) return;
+  cuidarMap = L.map(mapNode).setView([center.lat,center.lon], 12);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom:19, attribution:"&copy; OpenStreetMap contributors"}).addTo(cuidarMap);
+  const markers = [];
+  valid.forEach(r => {
+    const marker = L.marker([Number(r.lat),Number(r.lon)]).addTo(cuidarMap);
+    let popup = "<strong>" + escapeHtml(r.name || "Institución") + "</strong>";
+    if (r.address) popup += "<br>" + escapeHtml(r.address);
+    if (r.phone) popup += "<br>Tel.: " + escapeHtml(r.phone);
+    marker.bindPopup(popup);
+    markers.push(marker);
+  });
+  if (markers.length > 1) cuidarMap.fitBounds(L.featureGroup(markers).getBounds().pad(0.15));
+}
+function search() {
+  const sit=$("situation").value, svc=$("service").value;
+  const p=selectedProvince();
+  const locVal=$("locality").value;
+  const loc=locVal==="__other__" ? $("otherLocality").value.trim() : (selectedLocality()?.name || "");
+  let list=resources.filter(r=>{
+    const situations=[r.situation,...(r.situations||[]),...(r.tags||[])].filter(Boolean).map(x=>String(x).toLocaleLowerCase("es"));
+    const sitOk=!sit||situations.some(x=>x.includes(sit.toLocaleLowerCase("es"))||sit.toLocaleLowerCase("es").includes(x));
+    const serviceFields=[r.type,r.service,r.category,...(r.services||[])].filter(Boolean).join(" ").toLocaleLowerCase("es");
+    const svcOk=!svc||serviceFields.includes(svc.toLocaleLowerCase("es"))||svc.toLocaleLowerCase("es").split(/[ /]+/).some(term=>term.length>4&&serviceFields.includes(term));
+    const recordPlace=[r.locality,r.city,r.address,r.province,r.department,r.municipality].filter(Boolean).join(" ").toLocaleLowerCase("es");
+    const provinceOk=!p||String(r.province||"").toLocaleLowerCase("es").includes(p.name.toLocaleLowerCase("es"))||String(r.province||"").toLocaleLowerCase("es").includes(p.label.toLocaleLowerCase("es"));
+    const localityOk=!loc||recordPlace.includes(loc.toLocaleLowerCase("es"));
+    return sitOk&&svcOk&&provinceOk&&localityOk;
+  });
+  if (userCoords) {
+    list=list.map(r=>({...r,_distance:Number.isFinite(Number(r.lat))&&Number.isFinite(Number(r.lon))?distanceKm(userCoords,{lat:Number(r.lat),lon:Number(r.lon)}):null}));
+    list.sort((a,b)=>(a._distance===null?Infinity:a._distance)-(b._distance===null?Infinity:b._distance));
+  }
+  if (!list.length) {
+    const placeKnown=Boolean(locationPhrase() || userCoords);
+    renderMapFallback(placeKnown);
+    return;
+  }
+  const valid=list.filter(r=>Number.isFinite(Number(r.lat))&&Number.isFinite(Number(r.lon)));
+  let html='<div class="results-status">Se encontraron '+list.length+' recurso(s) en el directorio de Cuid.ar.'+(userCoords?' Ordenados por cercanía cuando hay coordenadas.':'')+'</div>';
+  if(valid.length) html+='<div id="resourceMapWrap"><div id="resourceMap" class="map-frame" role="application" aria-label="Mapa de recursos registrados en Cuid.ar"></div><p class="hint">Mapa de los registros del directorio. © OpenStreetMap contributors.</p></div>';
+  else html+='<div class="empty">Los registros encontrados aún no tienen coordenadas. Para mostrarlos en el mapa hay que completar la latitud y longitud de cada institución.</div>';
+  html+='<div class="resource-list">'+list.map(r=>{
+    let card='<article class="resource"><h3>'+escapeHtml(r.name||"Institución")+'</h3><p>'+escapeHtml(r.type||r.service||r.category||"Recurso de orientación")+'</p>';
+    card+='<p>'+escapeHtml([r.address,r.locality||r.city,r.province].filter(Boolean).join(", "))+'</p>';
+    if(r._distance!==undefined&&r._distance!==null) card+='<p>A '+(r._distance===null?'distancia no disponible':r._distance.toFixed(1)+' km aproximadamente')+'</p>';
+    if(r.phone) card+='<p>Teléfono: <a href="tel:'+String(r.phone).replace(/[^\d+]/g,"")+'">'+escapeHtml(r.phone)+'</a></p>';
+    if(r.website) card+='<p><a target="_blank" rel="noopener" href="'+escapeHtml(r.website)+'">Sitio oficial ↗</a></p>';
+    if(r.source) card+='<p>Fuente: <a target="_blank" rel="noopener" href="'+escapeHtml(r.source)+'">verificar ↗</a></p>';
+    return card+'</article>';
+  }).join("")+'</div>';
+  $("results").innerHTML=html;
+  if(valid.length) drawResourceMap(list);
+}
+$("geoBtn").addEventListener("click",()=>{
+  if(!navigator.geolocation){$("geoStatus").textContent="Este navegador no ofrece geolocalización. Elegí provincia y localidad.";return;}
+  $("geoStatus").textContent="Solicitando permiso de ubicación…";
+  navigator.geolocation.getCurrentPosition(pos=>{
+    userCoords={lat:pos.coords.latitude,lon:pos.coords.longitude};
+    $("geoStatus").textContent="Ubicación obtenida. Se usa solo para esta búsqueda y no se guarda.";
+  },()=>{
+    $("geoStatus").textContent="No se pudo acceder a la ubicación. Elegí provincia y localidad manualmente.";
+  },{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
+});
+$("searchBtn").addEventListener("click",search);
+$("clearBtn").addEventListener("click",()=>{
+  $("situation").value=""; $("service").value="";
+  $("province").value=""; $("locality").innerHTML=""; $("locality").appendChild(option("Elegí primero una provincia","")); $("locality").disabled=true;
+  $("otherLocality").value=""; $("otherLocalityWrap").hidden=true; userCoords=null;
+  $("geoStatus").textContent="La ubicación solo se consulta si das permiso al navegador.";
+  search();
+});
+$("externalBtn").addEventListener("click",()=>window.open(mapsSearchUrl(),"_blank","noopener"));
+document.querySelectorAll("[data-situation]").forEach(a=>a.addEventListener("click",()=>{
+  $("situation").value=a.dataset.situation;
+}));
+loadProvinces().catch(()=>{});
+
 </script>
 </body></html>
