@@ -176,6 +176,11 @@ function selectedProvince() {
   const p = $("province").selectedOptions[0];
   return p && p.value ? {id:p.value, name:p.dataset.rawName || p.textContent, label:p.textContent} : null;
 }
+function provinceAliases(name) {
+  if (name === "Ciudad Autónoma de Buenos Aires") return ["ciudad autónoma de buenos aires", "caba", "capital federal"];
+  if (name === "Buenos Aires") return ["buenos aires", "provincia de buenos aires", "pba"];
+  return [String(name).toLocaleLowerCase("es"), ("provincia de " + name).toLocaleLowerCase("es")];
+}
 function selectedLocality() {
   const loc = $("locality").selectedOptions[0];
   if (!loc || !loc.value || loc.value === "__all__" || loc.value === "__other__") return null;
@@ -230,6 +235,7 @@ function mapsSearchUrl() {
   return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query);
 }
 function renderMapFallback(placeKnown) {
+  clearResourceMap();
   const results = $("results");
   const url = mapsSearchUrl();
   let html = '<div class="results-status"><strong>El directorio propio de Cuid.ar todavía no tiene instituciones cargadas.</strong><br>';
@@ -243,8 +249,16 @@ function renderMapFallback(placeKnown) {
   }
   results.innerHTML = html;
 }
+function hasCoordinates(r) {
+  if (!r || r.lat === null || r.lat === undefined || String(r.lat).trim() === "" || r.lon === null || r.lon === undefined || String(r.lon).trim() === "") return false;
+  const lat = Number(r.lat), lon = Number(r.lon);
+  return Number.isFinite(lat) && Number.isFinite(lon) && Math.abs(lat) <= 90 && Math.abs(lon) <= 180;
+}
+function clearResourceMap() {
+  if (cuidarMap) { cuidarMap.remove(); cuidarMap = null; }
+}
 function drawResourceMap(list) {
-  const valid = list.filter(r => Number.isFinite(Number(r.lat)) && Number.isFinite(Number(r.lon)));
+  const valid = list.filter(hasCoordinates);
   if (!valid.length) {
     $("resourceMapWrap")?.remove();
     return;
@@ -254,7 +268,7 @@ function drawResourceMap(list) {
     $("results").insertAdjacentHTML("afterbegin", '<p class="hint">No se pudo cargar el mapa interactivo; podés abrir las ubicaciones en Google Maps.</p>');
     return;
   }
-  if (cuidarMap) { cuidarMap.remove(); cuidarMap = null; }
+  clearResourceMap();
   const mapNode = $("resourceMap");
   if (!mapNode) return;
   cuidarMap = L.map(mapNode).setView([center.lat,center.lon], 12);
@@ -281,12 +295,13 @@ function search() {
     const serviceFields=[r.type,r.service,r.category,...(r.services||[])].filter(Boolean).join(" ").toLocaleLowerCase("es");
     const svcOk=!svc||serviceFields.includes(svc.toLocaleLowerCase("es"))||svc.toLocaleLowerCase("es").split(/[ /]+/).some(term=>term.length>4&&serviceFields.includes(term));
     const recordPlace=[r.locality,r.city,r.address,r.province,r.department,r.municipality].filter(Boolean).join(" ").toLocaleLowerCase("es");
-    const provinceOk=!p||String(r.province||"").toLocaleLowerCase("es").includes(p.name.toLocaleLowerCase("es"))||String(r.province||"").toLocaleLowerCase("es").includes(p.label.toLocaleLowerCase("es"));
+    const recordProvince=String(r.province||"").toLocaleLowerCase("es");
+    const provinceOk=!p||provinceAliases(p.name).some(alias=>recordProvince.includes(alias))||recordProvince.includes(p.label.toLocaleLowerCase("es"));
     const localityOk=!loc||recordPlace.includes(loc.toLocaleLowerCase("es"));
     return sitOk&&svcOk&&provinceOk&&localityOk;
   });
   if (userCoords) {
-    list=list.map(r=>({...r,_distance:Number.isFinite(Number(r.lat))&&Number.isFinite(Number(r.lon))?distanceKm(userCoords,{lat:Number(r.lat),lon:Number(r.lon)}):null}));
+    list=list.map(r=>({...r,_distance:hasCoordinates(r)?distanceKm(userCoords,{lat:Number(r.lat),lon:Number(r.lon)}):null}));
     list.sort((a,b)=>(a._distance===null?Infinity:a._distance)-(b._distance===null?Infinity:b._distance));
   }
   if (!list.length) {
@@ -294,7 +309,7 @@ function search() {
     renderMapFallback(placeKnown);
     return;
   }
-  const valid=list.filter(r=>Number.isFinite(Number(r.lat))&&Number.isFinite(Number(r.lon)));
+  const valid=list.filter(hasCoordinates);
   let html='<div class="results-status">Se encontraron '+list.length+' recurso(s) en el directorio de Cuid.ar.'+(userCoords?' Ordenados por cercanía cuando hay coordenadas.':'')+'</div>';
   if(valid.length) html+='<div id="resourceMapWrap"><div id="resourceMap" class="map-frame" role="application" aria-label="Mapa de recursos registrados en Cuid.ar"></div><p class="hint">Mapa de los registros del directorio. © OpenStreetMap contributors.</p></div>';
   else html+='<div class="empty">Los registros encontrados aún no tienen coordenadas. Para mostrarlos en el mapa hay que completar la latitud y longitud de cada institución.</div>';
