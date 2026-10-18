@@ -11,24 +11,24 @@
 @media(max-width:760px){.brand{font-size:1.32rem}.brand small{font-size:.76rem}.brand-mark{width:54px;height:54px}.nav{gap:10px;padding:8px 12px}.nearby-search{padding:15px 12px}.nearby-search-head{align-items:flex-start;gap:8px}.nearby-search-title{gap:9px}.nearby-pin{width:34px;height:34px}.nearby-search .search-grid{grid-template-columns:1fr}.manual-location-grid{grid-template-columns:1fr}.service-shortcuts{gap:7px}.service-chip{font-size:.8rem;padding:7px 10px}.intro{grid-template-columns:minmax(0,1fr);gap:14px;padding:20px 16px}.intro h1{white-space:normal;font-size:clamp(1.7rem,6vw,2.2rem)}.intro-art{max-width:520px;margin:0 auto}.intro-art img{max-height:240px;object-fit:cover}.hero-quote-cover{padding:11px 9px;gap:6px;width:45%;height:84%;top:9%}.hero-quote-title{font-size:clamp(.88rem,3.2vw,1.02rem);font-weight:850}.hero-quote-body{font-size:clamp(.8rem,3vw,.96rem);font-weight:750;line-height:1.25}.hero-features{gap:10px 14px;margin-top:16px}.hero-feature{font-size:.85rem}.feature-icon{width:32px;height:32px;font-size:17px}.nav{min-height:68px;padding:9px 14px;gap:10px}.brand-mark{width:42px;height:42px}.brand{font-size:1.05rem}.brand small{font-size:.66rem}.navlinks{display:none}.mobile-menu{display:block;margin-left:auto;border:1px solid var(--line);background:white;color:var(--deep);border-radius:10px;padding:9px 11px;font-weight:800}.mobile-links{display:flex;padding:0 14px 12px;gap:8px;flex-wrap:wrap}.mobile-links.open{display:flex}.mobile-links a{padding:8px 10px;text-decoration:none;color:var(--deep);font-weight:700;background:var(--mint);border-radius:9px;font-size:.9rem}.mobile-links a.nav-where{padding:9px 13px;font-size:1rem}.quick-exit{font-size:.78rem;padding:8px 9px}.wrap{padding:18px 14px 44px}.intro{padding-top:14px}.urgency{gap:10px;margin:14px 0 26px}.urgent-card{padding:14px;display:block}.urgent-icon{width:40px;height:40px;margin-bottom:9px}.urgent-card p{font-size:.84rem}.call-btn{width:100%;padding:10px}.search-panel{padding:16px}.search-grid{grid-template-columns:1fr;gap:13px}.location-row{flex-direction:column}.location-select-grid{grid-template-columns:1fr;gap:10px}.actions{flex-direction:column}.actions button{width:100%}.resource-list{grid-template-columns:1fr}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.category{padding:14px}.category p{font-size:.86rem}.support{grid-template-columns:repeat(2,minmax(0,1fr))}.support-section{padding:16px 12px}.map-frame{height:300px}.location-select-grid select{font-size:.95rem}}
 @media(max-width:420px){.nearby-search-head{flex-direction:column}.nearby-search-head #geoBtn{align-self:flex-start;width:100%}.intro{padding:16px 13px}.intro-art img{max-height:185px}.hero-quote-cover{padding:8px 7px;gap:4px;width:45%;height:84%;top:9%}.hero-quote-title{font-size:clamp(.82rem,3.2vw,.92rem);font-weight:850}.hero-quote-body{font-size:clamp(.76rem,3vw,.88rem);font-weight:750;line-height:1.22}.hero-features{gap:9px}.hero-feature{font-size:.82rem}.feature-icon{width:30px;height:30px;font-size:16px}.urgency{grid-template-columns:1fr}.urgent-card{display:flex;align-items:flex-start}.urgent-icon{margin:0}.category-grid{grid-template-columns:1fr}.support{grid-template-columns:1fr}.brand small{max-width:180px}}
 .geo-enabled{background:#dff4e8!important;border-color:#188454!important;color:#12633d!important;box-shadow:0 0 0 3px #18845420}.geo-enabled #geoCheck{display:inline-grid;place-items:center;margin-left:7px;width:23px;height:23px;border-radius:50%;background:#188454;color:white;font-weight:900}.geo-check[hidden],#geoCheck[hidden]{display:none!important}.manual-location{margin-top:14px;padding:12px 14px;border:1px solid var(--line);border-radius:13px;background:#fbfdfc}.manual-location-title{font-weight:800;margin:0 0 10px;color:var(--deep)}.geo-status{min-height:1.25em}.navlinks{flex-wrap:wrap;justify-content:flex-end;row-gap:4px}.navlinks a.nav-where{order:-1}.mobile-links{justify-content:flex-start;flex-wrap:wrap}.results:empty{display:none}.results-status{display:none}.map-frame{margin-top:14px}
-/* Encabezado reorganizado: identidad y salida rápida arriba; navegación debajo */
+/* Encabezado: marca en primera línea; accesos prioritarios en segunda; navegación en tercera */
 .topbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);box-shadow:0 2px 12px rgba(23,59,64,.07)}
-.topbar .nav{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:10px 20px;max-width:1160px;margin:0 auto}
-.topbar .brand-mark{order:1;flex:0 0 48px;width:48px;height:48px}
-.topbar .brand{order:2;flex:1 1 auto;min-width:0;font-size:1.5rem;line-height:1.08;white-space:normal}
-.topbar .brand small{font-size:.8rem;line-height:1.2;margin-top:3px}
-.topbar .quick-exit{order:3;margin-left:auto;align-self:center;padding:10px 13px;font-size:.84rem}
-.topbar .navlinks{order:4;display:flex;flex:1 0 100%;width:100%;margin:0;justify-content:flex-start;gap:8px;padding-top:8px;border-top:1px solid #e8f0ee}
+.topbar .nav{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;align-items:center;gap:10px 14px;padding:12px 20px 9px;max-width:1160px;margin:0 auto}
+.topbar .brand-mark{grid-column:1;grid-row:1;justify-self:start;flex:0 0 52px;width:52px;height:52px}
+.topbar .brand{grid-column:1;grid-row:1;margin-left:62px;font-size:1.72rem;line-height:1.08;white-space:normal;align-self:center}
+.topbar .brand small{font-size:.86rem;line-height:1.2;margin-top:4px}
+.topbar .quick-exit{grid-column:1 / -1;grid-row:2;justify-self:start;margin:0;padding:9px 13px;font-size:.84rem}
+.topbar .navlinks{display:flex;flex:1 0 100%;width:100%;margin:0;justify-content:flex-start;gap:8px;padding:9px 20px 10px;border-top:1px solid #e8f0ee}
 .topbar .navlinks a{font-size:.9rem;padding:8px 12px}
-.topbar .navlinks a.nav-where{background:#e8f4f1;color:#244f50!important;border:1px solid #c8e0da;font-weight:850}
+.topbar .navlinks a.nav-where,.topbar .mobile-links a.nav-where{background:#e8f4f1;color:#244f50!important;border:1px solid #c8e0da;font-weight:850}
 .topbar .mobile-menu{display:none!important}
 .topbar .mobile-links{display:none!important}
 @media(max-width:760px){
- .topbar .nav{gap:8px 10px;padding:8px 12px}
- .topbar .brand-mark{flex-basis:42px;width:42px;height:42px}
- .topbar .brand{font-size:1.32rem;flex:1 1 120px}
- .topbar .brand small{font-size:.72rem}
- .topbar .quick-exit{padding:9px 10px;font-size:.76rem;max-width:112px;white-space:normal;text-align:center}
+ .topbar .nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;gap:8px;padding:10px 12px 8px}
+ .topbar .brand-mark{grid-column:1;grid-row:1;width:48px;height:48px;flex-basis:48px}
+ .topbar .brand{grid-column:1;grid-row:1;margin-left:57px;font-size:1.55rem;line-height:1.08}
+ .topbar .brand small{font-size:.78rem}
+ .topbar .quick-exit{grid-column:1;grid-row:2;justify-self:start;margin:0;padding:8px 12px;font-size:.8rem;max-width:none;white-space:nowrap}
  .topbar .navlinks{display:none!important}
  .topbar .mobile-links{display:flex!important;position:static;flex-wrap:nowrap;overflow-x:auto;gap:7px;padding:0 12px 10px;border:0;scrollbar-width:none}
  .topbar .mobile-links::-webkit-scrollbar{display:none}
@@ -36,10 +36,10 @@
  .topbar .mobile-links a.nav-where{background:#e8f4f1;color:#244f50!important;border:1px solid #c8e0da;font-weight:850;padding:8px 12px}
 }
 @media(max-width:380px){
- .topbar .brand{font-size:1.18rem}
- .topbar .brand small{font-size:.66rem}
- .topbar .brand-mark{flex-basis:36px;width:36px;height:36px}
- .topbar .quick-exit{font-size:.72rem;padding:8px}
+ .topbar .brand-mark{width:42px;height:42px;flex-basis:42px}
+ .topbar .brand{margin-left:50px;font-size:1.4rem}
+ .topbar .brand small{font-size:.7rem}
+ .topbar .quick-exit{font-size:.76rem;padding:8px 10px}
 }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
