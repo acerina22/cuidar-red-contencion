@@ -344,15 +344,11 @@ function mapsSearchUrl() {
 function renderMapFallback(placeKnown) {
   clearResourceMap();
   const results = $("results");
-  const place = chosenPlace();
-  if (!placeKnown || !place) {
-    results.innerHTML = '<p class="hint">Activá «Usar mi ubicación» o escribí una dirección, barrio o localidad para buscar recursos cercanos.</p>';
-    return;
-  }
+  const place = chosenPlace() || "Argentina";
   const query = mapsTerms() + " cerca de " + place;
   const embed = "https://maps.google.com/maps?q=" + encodeURIComponent(query) + "&output=embed";
   const url = mapsSearchUrl();
-  results.innerHTML = '<div class="results-status">Resultados de Google Maps para <strong>' + escapeHtml(place) + '</strong>. La lista completa y los detalles se abren en Google Maps.</div><iframe class="map-frame" title="Resultados de Google Maps para servicios cercanos" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="' + embed + '"></iframe><p class="actions"><a class="primary-btn maps-open" target="_blank" rel="noopener noreferrer" href="' + url + '">Ver lista completa en Google Maps ↗</a></p>';
+  results.innerHTML = '<div class="results-status">Búsqueda de <strong>' + escapeHtml(mapsTerms()) + '</strong> en <strong>' + escapeHtml(place) + '</strong>. La lista completa de lugares y sus fichas se consulta en Google Maps.</div><p class="actions"><a class="primary-btn maps-open" target="_blank" rel="noopener noreferrer" href="' + url + '">Ver resultados en Google Maps ↗</a></p><iframe class="map-frame" title="Mapa de búsqueda de servicios" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="' + embed + '"></iframe><p class="hint">Si el mapa no se ve dentro de esta página, usá el botón de arriba para abrir los resultados.</p>';
 }
 function hasCoordinates(r) {
   if (!r || r.lat === null || r.lat === undefined || String(r.lat).trim() === "" || r.lon === null || r.lon === undefined || String(r.lon).trim() === "") return false;
@@ -391,7 +387,7 @@ function drawResourceMap(list) {
 }
 function search() {
   const place = chosenPlace();
-  renderMapFallback(Boolean(place));
+  renderMapFallback(true);
   return;
   const sit=$("situation").value, svc=$("service").value;
   const p=selectedProvince();
