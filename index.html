@@ -301,13 +301,13 @@ function renderMapFallback(placeKnown) {
   clearResourceMap();
   const results = $("results");
   const url = mapsSearchUrl();
-  let html = '<div class="results-status"><strong>El directorio propio de Cuid.ar todavía no tiene instituciones cargadas.</strong><br>';
+  let html = '<div class="results-status">';
   if (placeKnown) {
-    html += 'Para que la búsqueda no termine sin resultados, te mostramos una búsqueda externa en Google Maps para la zona elegida. Sus datos no están verificados por Cuid.ar.</div>';
+    html += '</div>';
     html += '<iframe class="map-frame" title="Resultados externos de Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=' + encodeURIComponent(mapsTerms() + " en " + (locationPhrase() || (userCoords ? userCoords.lat + "," + userCoords.lon : ""))) + '&output=embed"></iframe>';
 
   } else {
-    html += 'No encontramos recursos verificados en el directorio propio todavía. Podés abrir una búsqueda externa mientras completamos los registros.</div>';
+    html += 'Elegí una provincia o localidad, o usá tu ubicación, para ver recursos en el mapa.</div>';
     html += '<p><a class="primary-btn" style="display:inline-flex;align-items:center;text-decoration:none" target="_blank" rel="noopener" href="' + url + '">Buscar recursos en Google Maps ↗</a></p>';
   }
   results.innerHTML = html;
