@@ -434,13 +434,34 @@ function search() {
   $("results").innerHTML=html;
   if(valid.length) drawResourceMap(list);
 }
+async function resolveAddressFromCoords(lat, lon) {
+  const endpoints = [
+    "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat="+encodeURIComponent(lat)+"&lon="+encodeURIComponent(lon)+"&zoom=18&addressdetails=1",
+    "https://geocode.maps.co/reverse?lat="+encodeURIComponent(lat)+"&lon="+encodeURIComponent(lon)
+  ];
+  for (const url of endpoints) {
+    try {
+      const response = await fetch(url, {headers: {"Accept-Language":"es"}});
+      if (!response.ok) continue;
+      const data = await response.json();
+      const address = data && (data.name || data.display_name || data.address?.road);
+      if (address && String(address).trim()) return String(address).trim();
+    } catch(e) {}
+  }
+  return "";
+}
 $("geoBtn").addEventListener("click",()=>{
-  if(!navigator.geolocation){
-    $("geoStatus").textContent="No se pudo detectar tu ubicación desde este navegador. Escribí tu dirección manualmente.";
+  if(!window.isSecureContext){
+    $("geoStatus").textContent="La ubicación solo funciona si abrís Cuid.ar desde su dirección segura HTTPS. Mientras tanto, escribí tu dirección manualmente.";
     $("addressInput").focus();
     return;
   }
-  $("geoStatus").textContent="Detectando tu ubicación y buscando la dirección…";
+  if(!navigator.geolocation){
+    $("geoStatus").textContent="Este navegador no permite detectar la ubicación. Escribí tu dirección manualmente.";
+    $("addressInput").focus();
+    return;
+  }
+  $("geoStatus").textContent="Solicitando permiso para detectar tu ubicación…";
   $("geoBtn").disabled=true;
   navigator.geolocation.getCurrentPosition(async pos=>{
     userCoords={lat:pos.coords.latitude,lon:pos.coords.longitude};
@@ -449,42 +470,37 @@ $("geoBtn").addEventListener("click",()=>{
     $("geoBtn").setAttribute("aria-pressed","true");
     $("geoCheck").hidden=false;
     $("geoLabel").textContent="Volver a detectar mi dirección";
-    $("province").value="";
-    $("locality").disabled=false;
-    $("locality").innerHTML="";
-    $("locality").appendChild(option("Elegí una localidad (opcional)", ""));
-    $("otherLocality").value="";
-    $("otherLocalityWrap").hidden=true;
-    try {
-      const url="https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat="+encodeURIComponent(pos.coords.latitude)+"&lon="+encodeURIComponent(pos.coords.longitude)+"&zoom=18&addressdetails=1";
-      const response=await fetch(url,{headers:{"Accept-Language":"es"}});
-      if(!response.ok) throw new Error("No se pudo resolver la dirección");
-      const data=await response.json();
-      const address=data && (data.name || data.display_name);
-      if(address){
-        $("addressInput").value=address;
-        $("geoStatus").textContent="✓ Dirección detectada: "+address+". Revisala; si está bien, elegí la situación y tocá Buscar.";
-      } else {
-        $("addressInput").value="";
-        $("geoStatus").textContent="Se detectaron coordenadas, pero no una dirección legible. Escribí tu dirección manualmente para seguir.";
-        $("addressInput").focus();
-      }
-    } catch(e) {
+    const lat=userCoords.lat, lon=userCoords.lon;
+    $("geoStatus").textContent="Ubicación encontrada. Validando la dirección…";
+    const address=await resolveAddressFromCoords(lat,lon);
+    if(address){
+      $("addressInput").value=address;
+      $("geoStatus").textContent="Dirección encontrada: "+address+". Confirmá que sea correcta; después elegí la situación y tocá Buscar.";
+    } else {
       $("addressInput").value="";
-      $("geoStatus").textContent="Se detectó la ubicación, pero no se pudo obtener la dirección. Escribila manualmente para seguir.";
+      const mapUrl="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(lat+","+lon);
+      $("geoStatus").innerHTML='La ubicación del dispositivo se detectó, pero no pudimos validar una dirección escrita. <a target="_blank" rel="noopener noreferrer" href="'+mapUrl+'">Ver el punto en Google Maps</a>. Si no muestra tu dirección, escribila manualmente abajo.';
       $("addressInput").focus();
     }
   },err=>{
     $("geoBtn").disabled=false;
+    userCoords=null;
     if(err && err.code===1){
-      $("geoStatus").textContent="No se autorizó la ubicación. Permití el acceso en los permisos del navegador o escribí tu dirección manualmente.";
+      $("geoStatus").textContent="No se autorizó el acceso a la ubicación. Habilitá el permiso del navegador o escribí tu dirección manualmente.";
     } else if(err && err.code===2){
-      $("geoStatus").textContent="No se pudo detectar la ubicación del dispositivo. Activá la ubicación del teléfono o escribí tu dirección manualmente.";
+      $("geoStatus").textContent="El teléfono no pudo determinar tu ubicación. Activá la ubicación del dispositivo o escribí tu dirección manualmente.";
     } else {
-      $("geoStatus").textContent="No se pudo detectar tu ubicación a tiempo. Escribí tu dirección manualmente para continuar.";
+      $("geoStatus").textContent="La detección tardó demasiado o no estuvo disponible. Revisá el permiso de ubicación o escribí tu dirección manualmente.";
     }
     $("addressInput").focus();
-  },{enableHighAccuracy:true,timeout:20000,maximumAge:60000});
+  },{enableHighAccuracy:false,timeout:25000,maximumAge:30000});
+});
+$("addressInput").addEventListener("input",()=>{
+  userCoords=null;
+  $("geoBtn").classList.remove("geo-enabled");
+  $("geoBtn").setAttribute("aria-pressed","false");
+  $("geoCheck").hidden=true;
+  $("geoLabel").textContent="Detectar mi dirección";
 });
 function syncServiceChips() {
   const value = $("service").value;
