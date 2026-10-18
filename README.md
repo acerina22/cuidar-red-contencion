@@ -10,7 +10,9 @@ Sitio estático inicial para pruebas. Publica la interfaz desde `index.html`.
 
 ## Directorio de instituciones
 
-El archivo `data/instituciones.json` contiene un array JSON. Está vacío en la primera versión para no publicar datos inventados. Cada registro puede seguir este esquema:
+El archivo `data/instituciones.json` contiene un array JSON. Está vacío en la primera versión para no publicar datos inventados.
+
+Los desplegables de provincia y localidad utilizan la API Georef de Datos Argentina (`https://apis.datos.gob.ar/georef/api`), que ofrece el catálogo geográfico oficial de provincias y localidades. CABA se muestra separada de la Provincia de Buenos Aires. Si la API geográfica no está disponible, queda una lista de respaldo de las jurisdicciones y la persona puede recurrir a Google Maps. Cada registro puede seguir este esquema:
 
 ```json
 [
@@ -43,7 +45,7 @@ Crear un **Static Site** enlazado a este repositorio:
 - Build Command: vacío
 - Publish Directory: `.`
 
-No necesita backend para servir esta primera versión. Las búsquedas del directorio consultan `data/instituciones.json`; como está vacío, no se mostrarán establecimientos propios hasta cargar registros verificados. Google Maps es una alternativa externa, no el directorio verificado de Cuid.ar.
+No necesita backend para servir esta primera versión. Las búsquedas del directorio consultan `data/instituciones.json`; como está vacío, no se mostrarán establecimientos propios hasta cargar registros verificados. Google Maps es una alternativa externa, no el directorio verificado de Cuid.ar. Una búsqueda externa puede mostrar resultados incompletos o no verificados; no debe presentarse como listado oficial de Cuid.ar.
 
 ## Límites y seguridad
 
