@@ -388,10 +388,12 @@ function drawResourceMap(list) {
 function search() {
   const place = chosenPlace();
   if (!place) {
-    $("geoStatus").textContent = "Primero detectá tu dirección o escribila manualmente para continuar.";
+    $("geoStatus").textContent = "Indicá una dirección, detectá tu ubicación o elegí una provincia y localidad antes de buscar.";
     $("addressInput").focus();
     return;
   }
+  // En esta versión el directorio propio aún no tiene instituciones cargadas.
+  // Abrimos una búsqueda real en Google Maps en lugar de mostrar resultados vacíos.
   renderMapFallback(true);
   return;
   const sit=$("situation").value, svc=$("service").value;
@@ -435,19 +437,35 @@ function search() {
   if(valid.length) drawResourceMap(list);
 }
 async function resolveAddressFromCoords(lat, lon) {
-  const endpoints = [
-    "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat="+encodeURIComponent(lat)+"&lon="+encodeURIComponent(lon)+"&zoom=18&addressdetails=1",
-    "https://geocode.maps.co/reverse?lat="+encodeURIComponent(lat)+"&lon="+encodeURIComponent(lon)
-  ];
-  for (const url of endpoints) {
-    try {
-      const response = await fetch(url, {headers: {"Accept-Language":"es"}});
-      if (!response.ok) continue;
-      const data = await response.json();
-      const address = data && (data.name || data.display_name || data.address?.road);
-      if (address && String(address).trim()) return String(address).trim();
-    } catch(e) {}
-  }
+  // La geolocalización del dispositivo y la traducción de coordenadas a dirección
+  // son dos pasos distintos. Si falla el servicio de direcciones, no se pierde
+  // userCoords: la búsqueda puede abrir Google Maps usando las coordenadas.
+  const url = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" +
+    encodeURIComponent(lat) + "&lon=" + encodeURIComponent(lon) +
+    "&zoom=18&addressdetails=1&accept-language=es";
+  try {
+    const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timeout = controller ? setTimeout(() => controller.abort(), 9000) : null;
+    const response = await fetch(url, {
+      headers: {"Accept-Language":"es"},
+      signal: controller ? controller.signal : undefined
+    });
+    if (timeout) clearTimeout(timeout);
+    if (!response.ok) return "";
+    const data = await response.json();
+    const a = data && data.address ? data.address : {};
+    const street = [a.road || a.pedestrian || a.footway || a.residential, a.house_number]
+      .filter(Boolean).join(" ");
+    const area = a.suburb || a.neighbourhood || a.city_district || a.town || a.city || a.village || a.municipality;
+    const province = a.state || a.province;
+    const parts = [street, area, province].filter(Boolean);
+    // Preferir una dirección legible y estructurada; no presentar el nombre
+    // de un comercio o un punto de interés como si fuera la dirección postal.
+    if (street) return parts.join(", ");
+    if (data && typeof data.display_name === "string" && data.display_name.trim()) {
+      return data.display_name.trim();
+    }
+  } catch (e) {}
   return "";
 }
 $("geoBtn").addEventListener("click",()=>{
@@ -479,7 +497,7 @@ $("geoBtn").addEventListener("click",()=>{
     } else {
       $("addressInput").value="";
       const mapUrl="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(lat+","+lon);
-      $("geoStatus").innerHTML='La ubicación del dispositivo se detectó, pero no pudimos validar una dirección escrita. <a target="_blank" rel="noopener noreferrer" href="'+mapUrl+'">Ver el punto en Google Maps</a>. Si no muestra tu dirección, escribila manualmente abajo.';
+      $("geoStatus").innerHTML='El teléfono detectó tu ubicación, pero el servicio de direcciones no respondió. <a target="_blank" rel="noopener noreferrer" href="'+mapUrl+'">Comprobar el punto en Google Maps</a>. Podés escribir la dirección manualmente; si no la conocés, también podés tocar Buscar para consultar servicios cerca del punto detectado.';
       $("addressInput").focus();
     }
   },err=>{
