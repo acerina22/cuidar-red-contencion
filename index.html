@@ -166,8 +166,14 @@ async function loadLocalities() {
     $("localityStatus").textContent = "No se pudieron cargar las localidades. Podés escribir otra localidad o buscar con la provincia completa.";
   }
 }
-$("province").addEventListener("change", loadLocalities);
+$("province").addEventListener("change", () => {
+  userCoords = null;
+  $("geoStatus").textContent = "Vas a buscar por la jurisdicción seleccionada.";
+  loadLocalities();
+});
 $("locality").addEventListener("change", () => {
+  userCoords = null;
+  $("geoStatus").textContent = "Vas a buscar por la localidad seleccionada.";
   $("otherLocalityWrap").hidden = $("locality").value !== "__other__";
 });
 $("menuBtn").addEventListener("click", () => {
@@ -346,6 +352,12 @@ $("geoBtn").addEventListener("click",()=>{
   $("geoStatus").textContent="Solicitando permiso de ubicación…";
   navigator.geolocation.getCurrentPosition(pos=>{
     userCoords={lat:pos.coords.latitude,lon:pos.coords.longitude};
+    $("province").value="";
+    $("locality").innerHTML="";
+    $("locality").appendChild(option("Usando ubicación actual", "__gps__"));
+    $("locality").disabled=true;
+    $("otherLocality").value="";
+    $("otherLocalityWrap").hidden=true;
     $("geoStatus").textContent="Ubicación obtenida. Buscando recursos cerca de vos… La ubicación no se guarda.";
     search();
   },err=>{
