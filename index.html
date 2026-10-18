@@ -369,7 +369,6 @@ $("clearBtn").addEventListener("click",()=>{
   $("situation").value=""; $("service").value="";
   $("localityFilter").value="";
   if (localityCatalog.length) renderLocalityOptions();
-  $("otherLocality").value=""; $("otherLocalityWrap").hidden=true;
   search();
 });
 $("externalBtn").addEventListener("click",()=>window.open(mapsSearchUrl(),"_blank","noopener"));
